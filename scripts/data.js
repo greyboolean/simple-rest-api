@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const { faker } = require("@faker-js/faker");
 const user = require("../src/models/userModel");
 const User = require("../src/models/userModel");
-require("dontenv").config();
+require("dotenv").config();
 
 // Connect to MongoDB
 mongoose
