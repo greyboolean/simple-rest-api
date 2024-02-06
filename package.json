@@ -5,7 +5,8 @@
 	"main": "app.js",
 	"scripts": {
 		"start": "node app.js",
-		"dev": "nodemon app.js"
+		"dev": "nodemon app.js",
+		"data": "node ./scripts/data.js"
 	},
 	"author": "Grey Boolean",
 	"license": "ISC",
