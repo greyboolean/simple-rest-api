@@ -1,4 +1,4 @@
-const User = required("../models/userModel.js");
+const User = require("../models/userModel.js");
 
 // Controller functions for user routes
 const userController = {
