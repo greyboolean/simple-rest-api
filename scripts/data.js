@@ -21,6 +21,10 @@ const generateUsers = async (num) => {
 			email: faker.internet.email(),
 			// password: faker.internet.password(),
 			password: "pass1234",
+      // role: weightedArrayElement([
+			// 	{ weight: 8, value: "user" },
+			// 	{ weight: 2, value: "admin" },
+			// ]),
 			role: faker.helpers.arrayElement(["admin", "user"]),
 		});
 		await user.save();
