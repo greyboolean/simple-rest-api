@@ -13,7 +13,7 @@ const userController = {
 			});
 		} catch (error) {
 			res.status(500).json({
-				success: true,
+				success: false,
 				message: error.message,
 			});
 		}
