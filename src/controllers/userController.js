@@ -79,20 +79,50 @@ const userController = {
 		}
 	},
 
+	// // UPDATE an existing user
+	// updateUser: async (req, res) => {
+	// 	try {
+	// 		const updatedUser = await User.findByIdAndUpdate(
+	// 			req.params.id,
+	// 			req.body,
+	// 			{ new: true }
+	// 		);
+	// 		if (!updatedUser) {
+	// 			return res.status(404).json({
+	// 				success: false,
+	// 				message: "User not found",
+	// 			});
+	// 		}
+	// 		res.status(200).json({
+	// 			success: true,
+	// 			data: updatedUser,
+	// 			message: "User updated successfully",
+	// 		});
+	// 	} catch (error) {
+	// 		res.status(500).json({
+	// 			success: false,
+	// 			message: error.message,
+	// 		});
+	// 	}
+	// },
+
 	// UPDATE an existing user
+	// with password hashing
 	updateUser: async (req, res) => {
 		try {
-			const updatedUser = await User.findByIdAndUpdate(
-				req.params.id,
-				req.body,
-				{ new: true }
-			);
-			if (!updatedUser) {
+			const user = await User.findById(req.params.id).select("+password");
+			if (!user) {
 				return res.status(404).json({
 					success: false,
 					message: "User not found",
 				});
 			}
+
+			// Update the fields
+			Object.assign(user, req.body);
+
+			const updatedUser = await user.save();
+			updatedUser.password = undefined;
 			res.status(200).json({
 				success: true,
 				data: updatedUser,
