@@ -5,7 +5,8 @@
 	"main": "app.js",
 	"scripts": {
 		"start": "node app.js",
-		"dev": "nodemon app.js"
+		"dev": "nodemon app.js",
+		"data": "node ./scripts/data.js"
 	},
 	"author": "Grey Boolean",
 	"license": "ISC",
@@ -15,7 +16,8 @@
 		"dotenv": "^16.4.1",
 		"express": "^4.18.2",
 		"jsonwebtoken": "^9.0.2",
-		"mongoose": "^8.1.1"
+		"mongoose": "^8.1.1",
+		"validator": "^13.11.0"
 	},
 	"devDependencies": {
 		"@faker-js/faker": "^8.4.0",
