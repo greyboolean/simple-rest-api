@@ -5,6 +5,7 @@ const cors = require("cors");
 require("dotenv").config();
 const authRouter = require("./src/routes/authRouter");
 const userRouter = require("./src/routes/userRouter");
+const nicRouter = require("./src/routes/nicRouter");
 
 const app = express();
 
@@ -25,6 +26,7 @@ app.use(cors());
 // Routes
 app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/users", userRouter);
+app.use("/api/v1/nic", nicRouter);
 
 // Start the server
 const port = process.env.port || 3000;
