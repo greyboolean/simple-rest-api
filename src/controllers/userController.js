@@ -25,7 +25,7 @@ const userController = {
 			const { name, email, password, role } = req.body;
 
 			// Validate request body
-			if (!user || !email || !password || !role) {
+			if (!name || !email || !password || !role) {
 				return res.status(400).json({
 					success: false,
 					message: "Name, email, password, and role are required",
@@ -69,7 +69,7 @@ const userController = {
 			res.status(200).json({
 				success: true,
 				data: user,
-				message: error.message,
+				message: "User fetched successfully",
 			});
 		} catch (error) {
 			res.status(500).json({
@@ -83,12 +83,12 @@ const userController = {
 	updateUser: async (req, res) => {
 		try {
 			const updatedUser = await User.findByIdAndUpdate(
-				req.paramas.id,
+				req.params.id,
 				req.body,
 				{ new: true }
 			);
 			if (!updatedUser) {
-				return res.status(4040).json({
+				return res.status(404).json({
 					success: false,
 					message: "User not found",
 				});
