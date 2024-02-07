@@ -43,7 +43,7 @@ const authController = {
 			}
 
 			// Save user to database
-			const newUser = User.create(req.body);
+			const newUser = await User.create(req.body);
 
 			// Remove password from output
 			newUser.password = undefined;
@@ -77,12 +77,12 @@ const authController = {
 			if (!email || !password) {
 				return res.status(400).json({
 					success: false,
-					message: "Username and password are required",
+					message: "Email and password are required",
 				});
 			}
 
 			// Find the user in the database
-			const user = await user.findOne({ email }).select("+password");
+			const user = await User.findOne({ email }).select("+password");
 
 			// Compare passwords
 			const isPasswordValid = await bcrypt.compare(
@@ -93,7 +93,7 @@ const authController = {
 			if (!user || !isPasswordValid) {
 				return res.status(401).json({
 					success: false,
-					message: "Invalid username or password",
+					message: "Invalid email or password",
 				});
 			}
 
@@ -134,7 +134,7 @@ const authController = {
 	},
 
 	// Protect route
-	protec: async (req, res, next) => {
+	protect: async (req, res, next) => {
 		try {
 			let token;
 			// Get token from request header
@@ -144,7 +144,7 @@ const authController = {
 			) {
 				token = req.headers.authorization.split(" ")[1];
 				// Get token from cookie if not in header
-			} else if ((req, cookies && req.cookies.jwt)) {
+			} else if (req.cookies && req.cookies.jwt) {
 				token = req.cookies.jwt;
 			}
 
@@ -197,3 +197,5 @@ const authController = {
 		};
 	},
 };
+
+module.exports = authController;
