@@ -21,8 +21,8 @@ const generateToken = (user) => {
 };
 
 const authController = {
-	// Signup
-	signup: async (req, res) => {
+	// Register
+	register: async (req, res) => {
 		try {
 			// Get user input
 			const { name, email, password } = req.body;
@@ -59,7 +59,7 @@ const authController = {
 				success: true,
 				token,
 				data: newUser,
-				message: "User signed up successfully",
+				message: "User registered successfully",
 			});
 		} catch (error) {
 			res.status(500).json({
